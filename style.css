@@ -1,0 +1,81 @@
+html, body{
+   background-image: url("Background.png");
+   background-size: 100%;
+  margin: 0%;
+  padding: 0%;  
+}
+div.haut
+{
+    height: 60px;
+    width: 100%;
+    background-image: url("mh.jpg");
+    line-height: 2em;
+    text-align: center;
+    color: brown;
+    font-size: 150%;
+    font-family: Impact, fantasy;
+}
+div.hautd
+{
+    height: 60px;
+    width: 3%;
+    float: right;
+    background-size: 100%;
+    vertical-align: baseline;
+    line-height: 50%;
+}
+div.example
+{
+    vertical-align: baseline;
+    line-height: 100%;
+}
+@media screen and (max-width: 600px) {
+    div.example {
+      font-size: 20px;
+    }
+  }
+  @media screen and (min-width: 601px) {
+    div.example {
+      font-size: 50px;
+    }
+  }
+
+div.test
+{
+    color: black;
+}
+
+
+
+div.monstre
+{
+  margin-top: 15%;
+  float: right;
+  margin-right: 15%;
+}
+
+.conteneur {
+  display: flex;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
+}
+.result
+{
+  background-color: whitesmoke;
+  margin: 5%;
+  opacity: 0.8;
+  border-radius: 10px;
+}
+.texter
+{
+  width: 10%;
+  float: left;
+}
+h1
+{
+  padding: 0%; 
+}
+
+.co{
+  float: right;
+}
