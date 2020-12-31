@@ -7,10 +7,16 @@
 </head>
 <body>
 
-  
-          
-        <section class="login">
-        <div>
+<?php
+       
+
+        
+        if (session_status() == PHP_SESSION_ACTIVE){
+            echo "okay";
+        }
+        else{?>
+            <section class="login">
+            <div>
             <form method="post">
             Connexion:  
             Utilisateur:<input type="text" name="User" />
@@ -19,20 +25,25 @@
             <h1><a href="Page-Inscription.php" >Inscription</a>
             <a href="index.php" >Menu Principale</a></h1>
             </form>
-
-    <?php
-    include "Fonction-Conexion-Inscription.php";
-    if(isset($_POST["Nom"])) 
-    {
-        conexion($_POST["User"], $_POST["Mdp"]);
-    }
+            </div>
+            </section>    
 
 
+                <?php
+                $MaBase = new PDO('mysql:host=localhost; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
+               if(isset($_POST["User"])) {
+                $_POST["User"] = $_SESSION["User"];
+                    $ObjetResultatDeRequeteBrut = $MaBase->query("SELECT * FROM `User` WHERE `Nom`='".$_SESSION["User"]."' AND `Mdp` = '".$_SESSION["Mdp"]."'"); 
+                    if($ObjetResultatDeRequeteBrut->rowCount()>=1){
+                        session_start(); 
+                    }
+                    else{
+                        echo"Echec de connection "; 
+                    }
+                }
+            }
+            
     ?>
-        
-    </div>
-    </section>    
-
-
+   
 </body>
 </html>

@@ -17,7 +17,7 @@
         <div class="hautd">
         
             <div class="example" align='center'>
-                <a href="Page-Conexion.php">
+                <a href="connexion2.php">
                     <img class="co" src="co.png" alt="">
                 </a>
             </div>
@@ -69,6 +69,7 @@ try{
                             echo "<option selected value='".$TableauDunTuple2['idTalent']."'>".$TableauDunTuple2['Nom']."</option>";
                         echo "</select>";
                     ?>
+                    <h5>Clic gauche pour une selection et CTRL + clic gauche pour plusieur</h5>
                 </div>
             </div>
 

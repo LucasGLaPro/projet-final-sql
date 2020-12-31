@@ -15,15 +15,17 @@ function ajout($User, $Mdp)
 ?>
 
 <?php 
-
+function conexion($User, $Mdp){echo "eheh";
 try{
 
     $MaBase = new PDO('mysql:host=localhost; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
     
-    if(isset($_POST["User"])) {
-    $ObjetResultatDeRequeteBrut = $MaBase->query("SELECT * FROM `User` WHERE `Nom`='".$_POST["User"]."' AND `Mdp` = '".$_POST["Mdp"]."'"); 
+    if(isset($User)) {
+    $ObjetResultatDeRequeteBrut = $MaBase->query("SELECT * FROM `User` WHERE `Nom`='".$User."' AND `Mdp` = '".$Mdp."'"); 
             if($ObjetResultatDeRequeteBrut->rowCount()>=1){
-                echo"Vous ête connecté";
+                $num = 1;
+                return $num;
+                echo $num;
             }
             else{
                 echo"Echec de connection "; 
@@ -32,7 +34,7 @@ try{
 
 }catch(Exception $e){
 
-    echo "J'ai eu un problème erreur :".$e->getMessage();
+    echo "J'ai eu un problème erreur dans la fonction:".$e->getMessage();
 }
-    
+}  
 ?>

@@ -16,7 +16,7 @@
         Utilisateur:<input type="text" name="Nom" />
         Mot de passe:<input type="password" name="Mdp" />
         <input class="Valide" type="submit" value="Valider" name="send"/>
-        <h1><a href="Page-Conexion.php" >Connexion</a>
+        <h1><a href="connexion2.php" >Connexion</a>
             <a href="index.php" >Menu Principale</a></h1>
         </form>
     
