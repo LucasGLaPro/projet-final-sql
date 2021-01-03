@@ -80,10 +80,10 @@ try{
                     <p><img src="LogoMonstre.png" alt=""></p>
 
                     <?php
-                        $ObjetResultatDeRequeteBrut3 = $MaBase->query("SELECT * FROM `Monstre` ORDER BY Nom ASC");
+                        $ObjetResultatDeRequeteBrut3 = $MaBase->query("SELECT * FROM `Monstre` ORDER BY NomM ASC");
                         echo "<select name='monstre'>";
                         while($TableauDunTuple3 = $ObjetResultatDeRequeteBrut3->fetch())
-                            echo "<option value='".$TableauDunTuple3['idMonstre']."'>".$TableauDunTuple3['Nom']."</option>";
+                            echo "<option value='".$TableauDunTuple3['idMonstre']."'>".$TableauDunTuple3['NomM']."</option>";
                           echo "</select>";
                           
                     ?>
@@ -135,7 +135,7 @@ if(isset($_POST["monstre"])) {
     
 
     ?>
-<div class="result"><?php echo "Dégat de l'arme:".$basearme["Attaque"]."<br>". "Boost du talent:".$talentStats."<br>"."vie du monstre:". $basemonstre["Vie"]."<br>". "Il faut mettre au moins ".ceil($result). " coups pour pouvoir tuer le ". $basemonstre['Nom']. " avec ". $basearme["Nom"]. " et le(s) talent(s):".join(",",$talentsNames)?></div>
+<div class="result"><?php echo "Dégat de l'arme:".$basearme["Attaque"]."<br>". "Boost du talent:".$talentStats."<br>"."vie du monstre:". $basemonstre["Vie"]."<br>". "Il faut mettre au moins ".ceil($result). " coups pour pouvoir tuer le ". $basemonstre['NomM']. " avec ". $basearme["Nom"]. " et le(s) talent(s):".join(",",$talentsNames)?></div>
     <?php
 
 

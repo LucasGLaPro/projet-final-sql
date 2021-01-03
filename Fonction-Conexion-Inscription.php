@@ -1,11 +1,11 @@
 <?php
-function ajout($User, $Mdp)
+function ajout($User, $Mdp, $fav)
 {
     try{
 
         $MaBase = new PDO('mysql:host=localhost; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
 
-        $ObjetResultatDeRequeteBrut = $MaBase->query("INSERT INTO `User`(`Nom`, `Mdp`) VALUE('".$User."','".$Mdp."')");        
+        $ObjetResultatDeRequeteBrut = $MaBase->query("INSERT INTO `User`(`Nom`, `Mdp`, `Favori`) VALUE('".$User."','".$Mdp."','".$fav."')");        
     
     }catch(Exception $e){
     

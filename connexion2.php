@@ -1,3 +1,15 @@
+<link rel="stylesheet" href="style.css">
+<div class="haut">
+    <span>MH Calculator Online</span>
+        <div class="hautd">
+        
+            <div class="example" align='center'>
+                <a href="index.php">
+                    <img class="co" src="home.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
 <?php
     session_start();
     $MaBase = new PDO('mysql:host=localhost; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
@@ -14,10 +26,13 @@
 <body>
 
 <?php
-
+include "logged.php";
 
 if(isset($_SESSION["co"]) && $_SESSION["co"]){
     echo"<div> Bienvenue ". $_SESSION["prenom"]."</div>";
+    $ObjetResultatDeRequeteBrut = $MaBase->query("SELECT * FROM `User` WHERE `Nom`='".$_SESSION["prenom"]."' AND `Mdp` = '".$_SESSION["mdp"]."'");
+    $ObjetResultatDeRequeteBrut = $ObjetResultatDeRequeteBrut->fetch();
+    fav($ObjetResultatDeRequeteBrut["iduser"]);
 ?>
 <form action="" method="post">
 <p>
@@ -33,8 +48,8 @@ if(isset($_POST["deco"])) {
     <section class="login">
     <div>
     <form action="" method="post">
-    Login:<input type="text" name="prenom" />
-    Mot de passe:<input type="text" name="mdp" />
+    Login:<input type="text" name="prenom" required/>
+    Mot de passe:<input type="password" name="mdp" required/>
     <input type="submit" name="Valider" />
     <button type="submit" name="Reset">Reset</button>
     <h1><a href="Page-Inscription.php" >Inscription</a>
@@ -53,6 +68,7 @@ $_SESSION["mdp"] = $_POST["mdp"];
         if($ObjetResultatDeRequeteBrut->rowCount()>=1){
             $_SESSION["co"] = true;
             header("Refresh:0");
+            
         }
         else{
             echo"Echec de connection "; 
