@@ -1,3 +1,5 @@
+<link rel="icon" href="Icon.ico" />
+<title>MH Calculator Online</title>
 <link rel="stylesheet" href="style.css">
 <div class="haut">
     <span>MH Calculator Online</span>

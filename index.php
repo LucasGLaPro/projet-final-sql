@@ -5,10 +5,11 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" href="Icon.ico" />
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MH Calculator Online</title>
 </head>
 
 <body>
@@ -104,8 +105,8 @@ try{
     echo "J'ai eu un problème erreur :".$e->getMessage();
 }
 ?>
-    </div>
-    <?php echo "<br><input type='submit' value='Combat!' ></form>";
+    </div><div align="center">
+    <?php echo "<br><input type='submit' value='Combat!' style='width:130px'></form></div>";
 
 if(isset($_POST["monstre"])) {
     //echo"OK";

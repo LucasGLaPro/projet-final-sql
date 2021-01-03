@@ -1,3 +1,17 @@
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="Icon.ico" />
+<title>MH Calculator Online</title>
+<div class="haut">
+    <span>MH Calculator Online</span>
+        <div class="hautd">
+        
+            <div class="example" align='center'>
+                <a href="index.php">
+                    <img class="co" src="home.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
