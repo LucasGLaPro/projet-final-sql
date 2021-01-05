@@ -31,7 +31,7 @@
         <?php
 try{
 
-    $MaBase = new PDO('mysql:host=localhost; dbname=projet-final-bdd; charset=utf8','lucas', 'lucas');
+    $MaBase = new PDO('mysql:host=192.168.65.192; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
 
     $ObjetResultatDeRequeteBrut = $MaBase->query("SELECT * FROM `Arme` ORDER BY Nom ASC");
     //echo "j'ai fait ".$ObjetResultatDeRequeteBrut->rowCount()." requête";
@@ -104,7 +104,7 @@ try{
 
 
 <?php
-
+// calcule des coups a mettres
 }catch(Exception $e){
 
     echo "J'ai eu un problème erreur :".$e->getMessage();
@@ -137,7 +137,7 @@ if(isset($_POST["Talent"])) {
     $basemonstre = $MaBase->query("SELECT * FROM `Monstre` WHERE idMonstre ='".$_POST['monstre']."'");
     $basemonstre = $basemonstre->fetch();
     
-    $basearme['Attaque'] = $basearme['Attaque'] / 11;
+    $basearme['Attaque'] = $basearme['Attaque'] / 5;
     $result = $basemonstre['Vie'] / ($basearme['Attaque'] * $talentStats);
 
     $deg = $basearme["Attaque"]

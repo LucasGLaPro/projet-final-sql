@@ -14,7 +14,7 @@
     </div>
 <?php
     session_start();
-    $MaBase = new PDO('mysql:host=localhost; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
+    $MaBase = new PDO('mysql:host=192.168.65.192; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
 ?>
 
 
@@ -29,7 +29,7 @@
 
 <?php
 include "logged.php";
-
+//utilisateur connecté
 if(isset($_SESSION["co"]) && $_SESSION["co"]){
 
     echo"<div align='center'> <h3>Bienvenue ". $_SESSION["prenom"]."</h3></div>";
@@ -48,6 +48,7 @@ if(isset($_POST["deco"])) {
     header("Refresh:0");
 }   
 } else { ?>
+<!--utilisateur pas connecté-->
     <section class="login">
     <div>
     <form action="" method="post">
@@ -61,6 +62,7 @@ if(isset($_POST["deco"])) {
     </section> 
 </p>
 <?php
+//verification du mot de passe
 $_SESSION["co"] = false;
 if(isset($_POST["Valider"])){
     $_SESSION["prenom"] = $_POST["prenom"];

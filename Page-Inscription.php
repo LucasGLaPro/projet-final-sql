@@ -21,7 +21,9 @@
 </head>
 <body>
 
-<?php include "Fonction-Conexion-Inscription.php" ?>
+<?php include "Fonction-Conexion-Inscription.php" 
+//inscription de l'user
+?>
 
 <section class="login">
     <div>
@@ -30,7 +32,7 @@
         Utilisateur:<input type="text" name="Nom" required/>
         Mot de passe:<input type="password" name="Mdp" required/>
         Votre monstre préféré<?php
-        $MaBase = new PDO('mysql:host=localhost; dbname=projet-final-bdd; charset=utf8','lucas', 'lucas');
+        $MaBase = new PDO('mysql:host=192.168.65.192; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
         $ObjetResultatDeRequeteBrut3 = $MaBase->query("SELECT * FROM `Monstre` ORDER BY NomM ASC");
         echo "<select name='monstre'>";
         while($TableauDunTuple3 = $ObjetResultatDeRequeteBrut3->fetch())

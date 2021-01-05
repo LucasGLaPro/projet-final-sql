@@ -1,6 +1,6 @@
 <?php
 function admin(){
-
+//insert
 include("Fonction-Conexion-Inscription.php"); ?>
 
 <section class="insert">
@@ -27,7 +27,7 @@ include("Fonction-Conexion-Inscription.php"); ?>
             <input class="Valide" type="submit" value="Valider" name="send"/>
         </form>
 
-        <?php $MaBase = new PDO('mysql:host=localhost; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
+        <?php $MaBase = new PDO('mysql:host=192.168.65.192; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
 
         if(isset($_POST["send"])) {
             ajoutArme($_POST['NomArme'], $_POST['Atk'],$_POST['Afinite'],$_POST['Elements'],$_POST['Sceau']);
@@ -48,7 +48,7 @@ include("Fonction-Conexion-Inscription.php"); ?>
             <input class="Valide" type="submit" value="Valider" name="send2"/>
         </form>
 
-        <?php $MaBase = new PDO('mysql:host=localhost; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
+        <?php $MaBase = new PDO('mysql:host=192.168.65.192; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
 
             if(isset($_POST["send2"])) {
                 ajoutTalent($_POST['NomTalent'], $_POST['Boost']);
@@ -72,7 +72,7 @@ include("Fonction-Conexion-Inscription.php"); ?>
         <input class="Valide" type="submit" value="Valider" name="send3"/>
         </form>
 
-        <?php $MaBase = new PDO('mysql:host=localhost; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
+        <?php $MaBase = new PDO('mysql:host=192.168.65.192; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
 
             if(isset($_POST["send3"])) {
                 ajoutMonstre($_POST['NomMonstre'], $_POST['HP']);
@@ -89,8 +89,9 @@ include("Fonction-Conexion-Inscription.php"); ?>
 
 <!--<link rel="stylesheet" href="Page-Insert.css">-->
 <?php
+//update, delete.
     try {
-        $dbh = new PDO('mysql:host=localhost; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
+        $dbh = new PDO('mysql:host=192.168.65.192; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
 
     } catch (PDOException $e) {
         print "Erreur ! — " . $e->getMessage() . "<br/>";
@@ -110,13 +111,13 @@ include("Fonction-Conexion-Inscription.php"); ?>
         <form method="post">
 
             <select name="contentType">
-                <option value="talent">
+                <option value="Talent">
                     Talent
                 </option>
-                <option value="monstre">
+                <option value="Monstre">
                     Monstre
                 </option>
-                <option value="arme">
+                <option value="Arme">
                     Arme
                 </option>
             </select>
@@ -128,16 +129,17 @@ include("Fonction-Conexion-Inscription.php"); ?>
             <?php if (isset($_POST["contentTypeSubmit"])) {
 
                 $_SESSION["contentType"] = $_POST["contentType"];
+
                 $stmt = $dbh->query("SELECT * FROM ".$_POST["contentType"]." WHERE 1 ");
 
                     switch ($_SESSION["contentType"]) {
-                        case "arme":
+                        case "Arme":
                             $_SESSION["typeId"] = "idArme";
                             break;
-                        case "monstre":
+                        case "Monstre":
                             $_SESSION["typeId"] = "idMonstre";
                             break;
-                        case "talent":
+                        case "Talent":
                             $_SESSION["typeId"] = "idTalent";
                             break;
                     }
@@ -150,7 +152,7 @@ include("Fonction-Conexion-Inscription.php"); ?>
 
                         <?php foreach ($stmt as $row) { ?>
                             <option value="<?php echo $row[$_SESSION["typeId"]] ?>">
-                                <?php echo $row["NomM"] ?>
+                                <?php echo $_SESSION["contentType"] == "Monstre" ? $row["NomM"] : $row["Nom"] ?>  
                             </option>
                         <?php  } ?>
 
@@ -164,12 +166,13 @@ include("Fonction-Conexion-Inscription.php"); ?>
 
             if (isset($_POST["selectedElement"])) {
 
+
                 $data = $dbh->query("SELECT * FROM ".$_SESSION["contentType"]." WHERE ".$_SESSION["typeId"]." = ".$_POST["elementToSelect"])->fetch();
                 $_SESSION["elementToSelect"] = $_POST["elementToSelect"];
 
                 switch ($_SESSION["contentType"]) {
 
-                    case "arme": {
+                    case "Arme": {
 
                         ?>
 
@@ -195,14 +198,14 @@ include("Fonction-Conexion-Inscription.php"); ?>
 
                     <?php } break;
 
-                    case "monstre": { ?>
+                    case "Monstre": { ?>
 
                         <form method="post">
 
                             <p class="upTest">idMonstre :</p>
                             <input type="text" name="idMonstre" value="<?php echo $data["idMonstre"]?>">
                             <p class="upTest">Nom :</p>
-                            <input type="text" name="NomM" value="<?php echo $data["NomM"]?>">
+                            <input type="text" name="Nom" value="<?php echo $data["NomM"]?>">
                             <p class="upTest">Vie :</p>
                             <input type="text" name="Vie" value="<?php echo $data["Vie"]?>">
 
@@ -213,7 +216,7 @@ include("Fonction-Conexion-Inscription.php"); ?>
 
                     <?php } break;
 
-                        case "talent": { ?>
+                        case "Talent": { ?>
 
                             <form method="post">
 
@@ -240,7 +243,7 @@ include("Fonction-Conexion-Inscription.php"); ?>
             }
 
             if (isset($_POST["monstreUpdate"])) {
-                $dbh->query("UPDATE ".$_SESSION["contentType"]." SET idMonstre = '".$_POST["idMonstre"]."', Nom = '".$_POST["Nom"]."', Vie = ". $_POST["Vie"]." WHERE ".$_SESSION["typeId"]." = ".$_POST["idMonstre"]);
+                $dbh->query("UPDATE ".$_SESSION["contentType"]." SET idMonstre = '".$_POST["idMonstre"]."', NomM = '".$_POST["Nom"]."', Vie = ". $_POST["Vie"]." WHERE ".$_SESSION["typeId"]." = ".$_POST["idMonstre"]);
                 echo "<p>".$_POST["Nom"]." viens d'etre mit à jour</p>";
             }
 

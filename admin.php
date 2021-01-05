@@ -28,7 +28,7 @@
 
 <?php
 
-
+//utilisateur connecté
 if(isset($_SESSION["co"]) && $_SESSION["co"]){
     
     if($_SESSION["prenom"] != "admin"){
@@ -49,7 +49,7 @@ if(isset($_POST["deco"])) {
     header("Refresh:0");
 }   
 } else { ?>
-
+<!--utilisateur pas connecté-->
     <form action="" method="post">
 <p>
     Login:<input type="text" name="prenom" />
@@ -59,6 +59,7 @@ if(isset($_POST["deco"])) {
     <a href="index.php" >Menu Principal</a></h1>
 </p>
 <?php
+//verification du mot de passe
 $_SESSION["co"] = false;
 if(isset($_POST["Valider"])){
     $_SESSION["prenom"] = $_POST["prenom"];
@@ -68,7 +69,7 @@ if(isset($_POST["Valider"])){
 
         if($_SESSION["prenom"] == "admin" ){
             $_SESSION["mdp"] = $_POST["mdp"];
-            if($_SESSION["mdp"] == "bddrootlucas" ){
+            if($_SESSION["mdp"] == "admin" ){
                echo"<div class='style1'> ton nom est :".$_SESSION["prenom"]. $_SESSION["mdp"]."</div>"; 
                $_SESSION["co"] = true;
                header("Refresh:0");
