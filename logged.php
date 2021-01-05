@@ -13,9 +13,9 @@ try{
                 $nommonstre = $nommonstre->fetch();
                 $nomo = $nommonstre["NomM"];
                 echo "<div class='selctalent' align='center'>".'<img src="images/'.$nomo.'.png" alt="" />';
-                echo "<br>"."votre Monstre favori est:";
-                echo $nommonstre["NomM"].'</div>';
-                echo "<br>"."selectionnez un mostre a mettre en favori.";
+                echo "<br>"."<h4>votre Monstre favori est: ";
+                echo $nommonstre["NomM"].'</h4></div>';
+                echo "<br>"."<h4>Changez votre favori.</h4>";
                 
                 echo "<form action='' method='post'> <select name='monstre'>";
                 while($TableauDunTuple = $ObjetResultatDeRequeteBrut->fetch())

@@ -35,6 +35,50 @@ try{
 }catch(Exception $e){
 
     echo "J'ai eu un problème erreur dans la fonction:".$e->getMessage();
+}}
+function ajoutArme($NomArme, $Atk, $Afinite, $Elements, $Sceau)
+{
+    try{
+
+        $MaBase = new PDO('mysql:host=localhost; dbname=projet-final-bdd; charset=utf8','lucas', 'lucas');
+        
+
+        $ObjetResultatDeRequeteBrut = $MaBase->query("INSERT INTO `arme`(`Nom`, `Attaque`, `Afinité`, `Element`, `Sceau_des_anciens`) VALUES ('$NomArme','$Atk','$Afinite','$Elements','$Sceau')");        
+        
+    }catch(Exception $e){
+    
+        echo "J'ai eu un problème erreur :".$e->getMessage();
+    }
 }
-}  
+
+
+
+function ajoutTalent($NomTalent, $Boost)
+{
+    try{
+
+        $MaBase = new PDO('mysql:host=localhost; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
+
+        $ObjetResultatDeRequeteBrut = $MaBase->query("INSERT INTO `talent`(`Nom`, `Boost`) VALUES ('$NomTalent','$Boost')");        
+    
+    }catch(Exception $e){
+    
+        echo "J'ai eu un problème erreur :".$e->getMessage();
+    }
+}
+
+
+function ajoutMonstre($NomMonstre, $HP)
+{
+    try{
+
+        $MaBase = new PDO('mysql:host=localhost; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
+
+        $ObjetResultatDeRequeteBrut = $MaBase->query("INSERT INTO `monstre`(`NomM`, `Vie`) VALUES ('$NomMonstre','$HP')");        
+    
+    }catch(Exception $e){
+    
+        echo "J'ai eu un problème erreur :".$e->getMessage();
+    }
+}
 ?>

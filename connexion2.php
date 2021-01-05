@@ -31,7 +31,8 @@
 include "logged.php";
 
 if(isset($_SESSION["co"]) && $_SESSION["co"]){
-    echo"<div> Bienvenue ". $_SESSION["prenom"]."</div>";
+
+    echo"<div align='center'> <h3>Bienvenue ". $_SESSION["prenom"]."</h3></div>";
     $ObjetResultatDeRequeteBrut = $MaBase->query("SELECT * FROM `User` WHERE `Nom`='".$_SESSION["prenom"]."' AND `Mdp` = '".$_SESSION["mdp"]."'");
     $ObjetResultatDeRequeteBrut = $ObjetResultatDeRequeteBrut->fetch();
     fav($ObjetResultatDeRequeteBrut["iduser"]);
@@ -55,7 +56,7 @@ if(isset($_POST["deco"])) {
     <input type="submit" name="Valider" />
     <button type="submit" name="Reset">Reset</button>
     <h1><a href="Page-Inscription.php" >Inscription</a>
-    <a href="index.php" >Menu Principale</a></h1>
+    <a href="index.php" >Menu Principal</a></h1>
     </div>
     </section> 
 </p>

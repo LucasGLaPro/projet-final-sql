@@ -1,14 +1,16 @@
 html, body{
-   background-image: url("Background.png");
-   background-size: 100%;
+  /*background-image: url("Background.png");*/
+  background-color: #01060E;
+  background-size: 100%;
   margin: 0%;
-  padding: 0%;  
+  padding: 0%;
 }
 div.haut
 {
     height: 60px;
     width: 100%;
-    background-image: url("mh.jpg");
+    /*background-image: url("mh.jpg");*/
+    background-color: #202225cb;
     line-height: 2em;
     text-align: center;
     color: brown;
@@ -81,4 +83,13 @@ h1
 }
 .button:hover{
   transform: scale(1.01);
+}
+h5,h4,h3
+{
+  font-family: Arial, sans-serif;
+  color: white;
+}
+h2{
+  font-family: Arial, sans-serif;
+  color: white
 }

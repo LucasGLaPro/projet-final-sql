@@ -13,17 +13,19 @@
 </head>
 
 <body>
+
     <div class="haut">
     <span>MH Calculator Online</span>
         <div class="hautd">
         
             <div class="example" align='center'>
                 <a href="connexion2.php">
-                    <img class="co" src="co.png" alt="">
+                    <img class="co" src="co.png" alt="" title="Connexion/Inscription">
                 </a>
             </div>
         </div>
     </div>
+    <div align="center"><h2>Ce site permet de calculer le nombre de coup a mettre pour tuer un monstre. Vous pouvez aussi vous crée un compte et mettre un monstre en favori.</h2></div>
     <div class="test">
 
         <?php
@@ -40,7 +42,8 @@ try{
             
             <div>
                 <div class="selecarme">
-                    <p><img src="LogoArme.png" alt=""></p>
+                    <h4 align="center">Selectionnez une Arme</h4>
+                    <p><img src="LogoArme.png" alt="" title="Selectionnez une Arme"></p>
                     <?php
 
                         echo "<form action='' method='post'> <select name='Weapons'>";
@@ -54,7 +57,8 @@ try{
             <div>
                 <!--2eme division-->
                 <div class="selctalent" align="center">
-                    <p><img src="LogoJoyaux.png" alt=""></p>
+                    <h4>Selectionnez un ou plusieurs Joyeaux</h4>
+                    <p><img src="LogoJoyaux.png" alt="" title="Selectionnez un ou plusieurs Joyeaux"></p>
 
                     <?php
                         $ObjetResultatDeRequeteBrut2 = $MaBase->query("SELECT * FROM `Talent` ORDER BY Nom ASC");
@@ -70,7 +74,7 @@ try{
                             echo "<option selected value='".$TableauDunTuple2['idTalent']."'>".$TableauDunTuple2['Nom']."</option>";
                         echo "</select>";
                     ?>
-                    <h5>Clic gauche pour une selection et CTRL + clic gauche pour plusieur</h5>
+                    <h5>Clic gauche pour une selection et CTRL + clic gauche pour plusieurs Joyeaux</h5>
                 </div>
             </div>
 
@@ -78,7 +82,8 @@ try{
 
                 <!--3eme division-->
                 <div class="selcmonstre">
-                    <p><img src="LogoMonstre.png" alt=""></p>
+                    <h4 align="center">Selectionnez un Monstre</h4>
+                    <p><img src="LogoMonstre.png" alt="" title="Selectionnez un Monstre"></p>
 
                     <?php
                         $ObjetResultatDeRequeteBrut3 = $MaBase->query("SELECT * FROM `Monstre` ORDER BY NomM ASC");
@@ -106,9 +111,10 @@ try{
 }
 ?>
     </div><div align="center">
-    <?php echo "<br><input type='submit' value='Combat!' style='width:130px'></form></div>";
+    <?php echo "<br><input type='submit' value='Combat!' style='width:130px'></form>";
+        echo "<br><<a href='admin.php' >Administration</a></h1></div>";
 
-if(isset($_POST["monstre"])) {
+if(isset($_POST["Talent"])) {
     //echo"OK";
     $talents = join(",",$_POST['Talent']);
     //echo $talents;
@@ -131,12 +137,13 @@ if(isset($_POST["monstre"])) {
     $basemonstre = $MaBase->query("SELECT * FROM `Monstre` WHERE idMonstre ='".$_POST['monstre']."'");
     $basemonstre = $basemonstre->fetch();
     
-
+    $basearme['Attaque'] = $basearme['Attaque'] / 11;
     $result = $basemonstre['Vie'] / ($basearme['Attaque'] * $talentStats);
-    
+
+    $deg = $basearme["Attaque"]
 
     ?>
-<div class="result"><?php echo "Dégat de l'arme:".$basearme["Attaque"]."<br>". "Boost du talent:".$talentStats."<br>"."vie du monstre:". $basemonstre["Vie"]."<br>". "Il faut mettre au moins ".ceil($result). " coups pour pouvoir tuer le ". $basemonstre['NomM']. " avec ". $basearme["Nom"]. " et le(s) talent(s):".join(",",$talentsNames)?></div>
+<div class="result"><?php echo "Dégat de l'arme:".ceil($deg)."<br>". "Boost du talent:".$talentStats."<br>"."vie du monstre:". $basemonstre["Vie"]."<br>". "Il faut mettre au moins ".ceil($result). " coups pour pouvoir tuer le ". $basemonstre['NomM']. " avec ". $basearme["Nom"]. " et le(s) talent(s):".join(",",$talentsNames)?></div>
     <?php
 
 

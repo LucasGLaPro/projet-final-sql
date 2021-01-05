@@ -1,0 +1,51 @@
+html, body{
+    background-image: url("Monster_Hunter_2000x1200.jpg");
+    background-size: 100%;
+   margin: 0%;
+   padding: 0%;  
+ }
+
+
+section.insert{
+    display: flex;
+    position: fixed;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  
+    
+}
+
+section.insert > div{
+    
+    width: 450px;
+  
+    margin: auto;
+  
+    padding: 20px;
+
+    text-align: center;
+
+    background: rgb(194, 189, 189);
+    border: 1px solid rgb(151, 148, 148);
+
+    border-radius: 5px;
+
+}
+
+section.insert form{
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    margin-right: 0.625%;
+    text-align: center;
+    color: black;
+  }
+
+  .Valide{
+    margin-top: 10px;
+    }
