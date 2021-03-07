@@ -22,7 +22,8 @@ session_start()
             <div class="example" align='center'>
                 <a href="connexion2.php">
                 <?php if(isset($_SESSION["prenom"])) {
-                    echo $_SESSION["prenom"];
+                    //echo $_SESSION["prenom"];
+                    ?><img class="co" src="co.png" alt="" title="Connexion/Inscription"><?php
                 }
                     else{
                     ?><img class="co" src="co.png" alt="" title="Connexion/Inscription"><?php
