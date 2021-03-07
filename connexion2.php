@@ -14,7 +14,7 @@
     </div>
 <?php
     session_start();
-    $MaBase = new PDO('mysql:host=192.168.65.192; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
+    $MaBase = new PDO('mysql:host=localhost; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
 ?>
 
 
@@ -29,7 +29,8 @@
 
 <?php
 include "logged.php";
-//utilisateur connecté
+include "class.php";
+
 if(isset($_SESSION["co"]) && $_SESSION["co"]){
 
     echo"<div align='center'> <h3>Bienvenue ". $_SESSION["prenom"]."</h3></div>";
@@ -48,7 +49,6 @@ if(isset($_POST["deco"])) {
     header("Refresh:0");
 }   
 } else { ?>
-<!--utilisateur pas connecté-->
     <section class="login">
     <div>
     <form action="" method="post">
@@ -61,27 +61,17 @@ if(isset($_POST["deco"])) {
     </div>
     </section> 
 </p>
-<?php
-//verification du mot de passe
+<?php            
 $_SESSION["co"] = false;
 if(isset($_POST["Valider"])){
-    $_SESSION["prenom"] = $_POST["prenom"];
-    }
-    if(isset($_SESSION["prenom"])) {
-$_SESSION["mdp"] = $_POST["mdp"];
-        $ObjetResultatDeRequeteBrut = $MaBase->query("SELECT * FROM `User` WHERE `Nom`='".$_SESSION["prenom"]."' AND `Mdp` = '".$_SESSION["mdp"]."'"); 
-        if($ObjetResultatDeRequeteBrut->rowCount()>=1){
-            $_SESSION["co"] = true;
-            header("Refresh:0");
-            
-        }
-        else{
-            echo"Echec de connection "; 
-        }
-
-    } 
-    else
-        echo"";          
+    $test = new User($_POST["prenom"] ,$_POST["mdp"], $MaBase, "rien");
+    $test -> Connexion();
+}
+?>
+<form action="" method="post">
+<p>
+ <button type="submit" name="deco">Deconnexion</button> 
+</p><?php
 if(isset($_POST["Reset"])) {
     session_destroy();
 }   

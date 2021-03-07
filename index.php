@@ -1,4 +1,5 @@
 <?php
+session_start()
 //include "Fonction-Bdd.php";
 ?>
 <!DOCTYPE html>
@@ -20,7 +21,12 @@
         
             <div class="example" align='center'>
                 <a href="connexion2.php">
-                    <img class="co" src="co.png" alt="" title="Connexion/Inscription">
+                <?php if(isset($_SESSION["prenom"])) {
+                    echo $_SESSION["prenom"];
+                }
+                    else{
+                    ?><img class="co" src="co.png" alt="" title="Connexion/Inscription"><?php
+                    }?>
                 </a>
             </div>
         </div>
@@ -31,7 +37,7 @@
         <?php
 try{
 
-    $MaBase = new PDO('mysql:host=192.168.65.192; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
+    $MaBase = new PDO('mysql:host=localhost; dbname=projet-final-bdd; charset=utf8','lucas', 'lucas');
 
     $ObjetResultatDeRequeteBrut = $MaBase->query("SELECT * FROM `Arme` ORDER BY Nom ASC");
     //echo "j'ai fait ".$ObjetResultatDeRequeteBrut->rowCount()." requête";
@@ -104,7 +110,7 @@ try{
 
 
 <?php
-// calcule des coups a mettres
+
 }catch(Exception $e){
 
     echo "J'ai eu un problème erreur :".$e->getMessage();
@@ -112,7 +118,7 @@ try{
 ?>
     </div><div align="center">
     <?php echo "<br><input type='submit' value='Combat!' style='width:130px'></form>";
-        echo "<br><<a href='admin.php' >Administration</a></h1></div>";
+
 
 if(isset($_POST["Talent"])) {
     //echo"OK";
@@ -137,7 +143,7 @@ if(isset($_POST["Talent"])) {
     $basemonstre = $MaBase->query("SELECT * FROM `Monstre` WHERE idMonstre ='".$_POST['monstre']."'");
     $basemonstre = $basemonstre->fetch();
     
-    $basearme['Attaque'] = $basearme['Attaque'] / 5;
+    $basearme['Attaque'] = $basearme['Attaque'] / 11;
     $result = $basemonstre['Vie'] / ($basearme['Attaque'] * $talentStats);
 
     $deg = $basearme["Attaque"]
@@ -151,7 +157,13 @@ if(isset($_POST["Talent"])) {
 else{
     echo"";
 }
+?><a href="admin.php"><p>Administation</p></a><?php
+$based = $MaBase->query("SELECT * FROM user ORDER BY iduser DESC LIMIT 1");
+$based = $based->fetch();
+$numcompte = $MaBase->query("SELECT * FROM `user` ORDER BY Nom ASC");
 
+echo "<div class='bas'>"."Le/la dernier inscrit est: ".$based['Nom'];
+echo " et il y a ".$numcompte->rowCount()." personnes inscrit"."</div>";
 ?>
 </body>
 

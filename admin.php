@@ -1,7 +1,7 @@
 <?php
     session_start();
     include "fonctionadmin.php";
-
+    $MaBase = new PDO('mysql:host=localhost; dbname=projet-final-bdd; charset=utf8','lucas', 'lucas');
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -28,69 +28,23 @@
 
 <?php
 
-//utilisateur connecté
-if(isset($_SESSION["co"]) && $_SESSION["co"]){
-    
-    if($_SESSION["prenom"] != "admin"){
-        session_destroy();
-        header("Refresh:0");
+if(isset($_SESSION["prenom"])) {
+    $Admin = $MaBase->query("SELECT * FROM `user` WHERE Nom ='".$_SESSION["prenom"]."'");
+    $Admin = $Admin->fetch();
+    if($Admin["admin"]== 1){
+        admin();
+    }else{
+        echo"Vous n'ètes pas Administrateur.";
+        ?><img src="nop.jpg" alt="" title="nan mdr"><?php
     }
-    echo"<div class='style1'> Bienvenue ". $_SESSION["prenom"]."</div>";
-    admin();
-?>
-<form action="" method="post">
-<p>
- <button type="submit" name="deco">Deconnexion</button> 
-</p>
-<?php 
-if(isset($_POST["deco"])) {
-    session_destroy();
-    $_SESSION["co"] = false;
-    header("Refresh:0");
-}   
-} else { ?>
-<!--utilisateur pas connecté-->
-    <form action="" method="post">
-<p>
-    Login:<input type="text" name="prenom" />
-    Mot de passe:<input type="password" name="mdp" />
-    <input type="submit" name="Valider" />
-    <button type="submit" name="Reset">Reset</button>
-    <a href="index.php" >Menu Principal</a></h1>
-</p>
-<?php
-//verification du mot de passe
-$_SESSION["co"] = false;
-if(isset($_POST["Valider"])){
-    $_SESSION["prenom"] = $_POST["prenom"];
-
-    }
-    if(isset($_SESSION["prenom"])) {
-
-        if($_SESSION["prenom"] == "admin" ){
-            $_SESSION["mdp"] = $_POST["mdp"];
-            if($_SESSION["mdp"] == "admin" ){
-               echo"<div class='style1'> ton nom est :".$_SESSION["prenom"]. $_SESSION["mdp"]."</div>"; 
-               $_SESSION["co"] = true;
-               header("Refresh:0");
-            } else{
-                echo"<div class='style1'> Le mot de passe n'est pas bon.</div>";
-            }     
-        } else {
-            echo"<div class='style1'> Le login n'est pas bon</div>";
-        }
-    } 
-    else
-        echo"";          
-if(isset($_POST["Reset"])) {
-    session_destroy();
-}   
 }
+    else{
+    echo"Connectez vous pour avoir accès a cette page";
+    }
+
+
 
 
 ?>
-
-
-</form>
 </body>
 </html>
