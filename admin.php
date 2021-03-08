@@ -1,7 +1,7 @@
 <?php
     session_start();
     include "fonctionadmin.php";
-    $MaBase = new PDO('mysql:host=localhost; dbname=projet-final-bdd; charset=utf8','lucas', 'lucas');
+    $MaBase = new PDO('mysql:host=192.168.65.192; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,7 @@
 <?php
 
 if(isset($_SESSION["prenom"])) {
-    $Admin = $MaBase->query("SELECT * FROM `user` WHERE Nom ='".$_SESSION["prenom"]."'");
+    $Admin = $MaBase->query("SELECT * FROM `User` WHERE Nom ='".$_SESSION["prenom"]."'");
     $Admin = $Admin->fetch();
     if($Admin["admin"]== 1){
         admin();

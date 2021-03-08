@@ -85,7 +85,7 @@ h1
 .button:hover{
   transform: scale(1.01);
 }
-h5,h4,h3
+h4,h3
 {
   font-family: Arial, sans-serif;
   color: white;
@@ -101,3 +101,91 @@ h2{
   height: 5%;
   color: white;
 }
+
+
+
+h5 {
+  font-family: 'Maiden Orange',Arial,serif;  /*Police du texte*/
+  font-size: 18px;
+  }
+.thumb_page {
+  width: 15%;
+  height: 20%;
+  text-align: center;
+  padding: 0.5%;       /*Ecart entre les 4 coté d'un élément*/
+  margin: 1%;
+  
+  float: none;
+  line-height: 3%;
+  color: #58595B;
+  font-family: Arial,Helvetica,sans-serif;   /*Police du texte*/
+  font-size: 1%;
+  width: 30%;
+  
+  border: 1px solid #A7A9AC;
+  background: #E9EAEB;
+  border-radius: 10px;
+  box-shadow: 3px 3px 7px #CCC;
+  display: inline-block;
+  }
+  
+  .box{
+    line-height: 15px;
+    color: #58595B;
+    font-family: Arial,Helvetica,sans-serif;   /*Police du texte*/
+    font-size: 12px;
+    text-align: center;
+    width: 80%;
+    position: relative;
+    border: 1px solid #A7A9AC;
+    background: #E9EAEB;            /*Couleur de fond*/
+    border-radius: 10px;               /*border-radius permet de définir des coins arrondis pour la bordure d'un élément*/
+    box-shadow: 3px 3px 7px #CCC;        /*box-shadow ajoute des ombres à la boîte d'un élément*/
+    padding: 3%; 
+    margin: 5%;
+    display: none;
+    }
+  
+  .img_monstre {
+    width: 100%;
+  }
+
+  .img_talent {
+    width: 60%;
+  }
+  .img_arme {
+    width: 100%;
+  }
+  
+  .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+    }
+    
+    
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 5%;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    .imagegrid {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #close, #close_talent, #close_arme {
+      float: right;
+      font-size: 50px;
+    }

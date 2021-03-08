@@ -5,11 +5,11 @@ try{
 
 
     
-    $MaBase = new PDO('mysql:host=localhost; dbname=projet-final-bdd; charset=utf8','lucas', 'lucas');
-    $ObjetResultatDeRequeteBrut = $MaBase->query("SELECT * FROM `monstre` ORDER BY NomM ASC");
+    $MaBase = new PDO('mysql:host=192.168.65.192; dbname=Projet-Final-BDD; charset=utf8','lucas', 'lucas');
+    $ObjetResultatDeRequeteBrut = $MaBase->query("SELECT * FROM `Monstre` ORDER BY NomM ASC");
     //echo "j'ai fait ".$ObjetResultatDeRequeteBrut->rowCount()." requête";
                 
-                $nommonstre = $MaBase->query("SELECT * FROM Monstre, user WHERE monstre.idMonstre = user.Favori AND user.iduser = $User");
+                $nommonstre = $MaBase->query("SELECT * FROM Monstre, User WHERE Monstre.idMonstre = User.Favori AND User.iduser = $User");
                 $nommonstre = $nommonstre->fetch();
                 $nomo = $nommonstre["NomM"];
                 echo "<div class='selctalent' align='center'>".'<img src="images/'.$nomo.'.png" alt="" />';
@@ -29,10 +29,10 @@ try{
                     $basemonstre = $MaBase->query("SELECT * FROM `Monstre` WHERE idMonstre ='".$_POST['monstre']."'");
                     $basemonstre = $basemonstre->fetch();
                     //$ObjetResultatDeRequeteBrut = $MaBase->query("INSERT INTO `User`(`Favori`) VALUE('".$basemonstre["idMonstre"]."')"); 
-                    $ObjetResultatDeRequeteBrut = $MaBase->query("UPDATE `user` SET `Favori` = '".$basemonstre["idMonstre"]."' WHERE `user`.`iduser` = $User;");
+                    $ObjetResultatDeRequeteBrut = $MaBase->query("UPDATE `User` SET `Favori` = '".$basemonstre["idMonstre"]."' WHERE `User`.`iduser` = $User;");
                     echo "Votre favori a ete ajouté"; 
                     echo "<br>"."votre Monstre favori est:";
-                    $nommonstre = $MaBase->query("SELECT * FROM Monstre, user WHERE monstre.idMonstre = user.Favori AND user.iduser = $User");
+                    $nommonstre = $MaBase->query("SELECT * FROM Monstre, User WHERE Monstre.idMonstre = User.Favori AND User.iduser = $User");
                     $nommonstre = $nommonstre->fetch();
                     echo $nommonstre["NomM"];
                     header("Refresh:0");
